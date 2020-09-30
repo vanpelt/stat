@@ -20,6 +20,7 @@ namespace :stat do
   
   task :initialize do
     mkdir_p "pkg"
+	  
   end
   
   FileList['src/*.md'].each do |src|
@@ -61,7 +62,7 @@ namespace :stat do
 end
 
 __END__
-## Stat ##
+## Statastics ##
 The joy of simple static site maintenance made super easy.
 
 Hopefully you've already run `rake stat:get_started` from the directory containing the Rakefile, if not, go for it!  The idea is simple.  Define the content of your web pages using markdown, and slap a common layout around them.  Only rebuilding or uploading files when neccesary.  
