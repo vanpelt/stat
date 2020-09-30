@@ -3,6 +3,7 @@ require 'rubygems'
   require dep rescue puts "Stat requires the #{dep} Gem. `gem install #{dep}` to continue..." and exit
 end
 
+
 ENV['STAT_REMOTE'] = "deployer@mulva:/var/www/test"
 
 task :default => "stat:get_started"
@@ -22,6 +23,7 @@ namespace :stat do
     mkdir_p "pkg"
   end
   
+	
   FileList['src/*.md'].each do |src|
     output = src.sub(/src\/(.+).md/, 'pkg/\1.html')
     action = $1
@@ -34,6 +36,7 @@ namespace :stat do
     task :build => [:initialize, output]
   end
   
+	
   FileList['src/stylesheets/*', 'src/images/*', 'src/javascripts/*'].each do |src|
     output = src.sub(/^src/,'pkg')
     file output => src do
@@ -43,6 +46,7 @@ namespace :stat do
     task :build => [:initialize, output]
   end
   
+	
   desc "Build the site"
   task :build
   
@@ -60,11 +64,12 @@ namespace :stat do
   end
 end
 
+
 __END__
 ## Stat ##
 The joy of simple static site maintenance made super easy.
 
-Hopefully you've already run `rake stat:get_started` from the directory containing the Rakefile, if not, go for it!  The idea is simple.  Define the content of your web pages using markdown, and slap a common layout around them.  Only rebuilding or uploading files when neccesary.  
+Hopefully you've already run `rake stat:get_started` from the directory containing the Rakefile, if not, go for it!  The idea is simple and easy to do.  Define the content of your web pages using markdown, and slap a common layout around them.  Only rebuilding or uploading files when neccesary.  
 
 From within `src/layout.html.erb` you have access to two variables, `@content` and `@action`.  `@content` is what was generated for any given `*.md` file in your src directory and `@action` is the `*` part of the `*.md` file _use this for adding a class to navigation links, see `src/layout.html.erb`_.  Set the constant at the top of the Rakefile to the appropriate value if you intend to rsync the generated html somewhere.
 
