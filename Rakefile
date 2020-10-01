@@ -54,7 +54,7 @@ namespace :stat do
     rm_rf "pkg"
   end
   
-  desc "Build & Rsync to the configured host"
+  desc "Build & Resync to the configured host"
   task :deploy => :build do
     puts ENV['STAT_REMOTE'] ? `rsync -avz -e ssh pkg/ #{ENV['STAT_REMOTE']}` : "Usage: rake stat:deploy STAT_REMOTE=user@host:path"
   end
