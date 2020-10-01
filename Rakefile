@@ -1,3 +1,5 @@
+#rakeisawesome
+
 require 'rubygems'
 %w[maruku erubis].each do |dep|
   require dep rescue puts "Stat requires the #{dep} Gem. `gem install #{dep}` to continue..." and exit
